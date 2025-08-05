@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  nvflare:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nvflare-slim:latest
+    ipc: host
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      stack: 67108864
+    volumes:
+      - ./my-workspace:/workspace/my-workspace
+    stdin_open: true
+    tty: true
+    entrypoint: ["/bin/bash"]
+
