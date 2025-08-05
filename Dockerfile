@@ -16,7 +16,7 @@ RUN sed -i 's|http://deb.debian.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc
     pkg-config \
     ninja-build \
     && rm -rf /var/lib/apt/lists/*
-RUN pip install --upgrade pip setuptools wheel packaging nvflare==2.6.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install --upgrade pip setuptools wheel packaging -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 WORKDIR /workspace
 
@@ -68,7 +68,7 @@ RUN sed -i 's|http://deb.debian.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
-
+RUN pip install --no-cache-dir nvflare==2.6.1  -i https://pypi.tuna.tsinghua.edu.cn/simple
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=builder /workspace/NVFlare /workspace/NVFlare
 
