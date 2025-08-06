@@ -1,0 +1,18 @@
+FROM python:3.11.13-slim-bullseye
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+
+RUN sed -i 's|http://deb.debian.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
+    apt-get update && apt-get install -y \
+    libgomp1 \
+    git && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir tenseal==0.3.15 openmined-psi>=2.0.5 xgboost==3.0.2 nvflare==2.6.1 -i https://mirrors.ustc.edu.cn/pypi/simple/
+
+WORKDIR /workspace
+RUN git clone --depth=1 https://github.com/NVIDIA/NVFlare.git -b 2.6.1 /workspace/NVFlare
+
+CMD ["/bin/bash"]
