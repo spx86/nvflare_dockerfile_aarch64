@@ -10,7 +10,8 @@ RUN sed -i 's|http://deb.debian.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc
     git && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir tenseal==0.3.15 openmined-psi>=2.0.5 xgboost==3.0.2 nvflare==2.6.1 -i https://mirrors.ustc.edu.cn/pypi/simple/
+RUN pip install --no-cache-dir tenseal==0.3.15 openmined-psi>=2.0.5 xgboost==3.0.2 nvflare==2.6.1 -i https://mirrors.ustc.edu.cn/pypi/simple/ && \
+    pip cache purge
 
 WORKDIR /workspace
 RUN git clone --depth=1 https://github.com/NVIDIA/NVFlare.git -b 2.6.1 /workspace/NVFlare
