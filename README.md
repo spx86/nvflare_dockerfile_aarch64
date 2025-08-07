@@ -1,5 +1,12 @@
 # nvflare_dockerfile_aarch64
 Docker image package file for arm64 of nvflare, running on arm64 architecture machine
+## Prepare
+```shell
+git clone https://github.com/spx86/nvflare_dockerfile_aarch64.git
+#Create a shared folder my-workspace for sharing files
+cd nvflare_dockerfile_aarch64
+mkdir -p my-workspace
+```
 
 ## RUN on x86_64
 ```shell
